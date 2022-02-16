@@ -559,7 +559,7 @@ import UIKit
             return
         }
 
-        let minSpacingBetweenLabels: CGFloat = 8.0
+        let minSpacingBetweenLabels: CGFloat = -minLabel.frame.width
 
         let newMinLabelCenter: CGPoint = CGPoint(x: leftHandle.frame.midX,
                                                  y: leftHandle.frame.maxY + (minLabelTextSize.height/2) + labelPadding)
