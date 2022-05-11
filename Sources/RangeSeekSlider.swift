@@ -536,10 +536,10 @@ import UIKit
         accessibleElements = [leftHandleAccessibilityElement, rightHandleAccessibilityElement]
     }
 
-    private func updateHandlePositions() {
-        print("[SLIDER] 🟡 updateHandlePositions")
-        print("leftHandle X: \(selectedMinValue) | \(xPositionAlongLine(for: selectedMinValue))")
-        print("rightHandle X: \(selectedMaxValue) | \(xPositionAlongLine(for: selectedMaxValue))")
+    private func updateHandlePositions(source: String = #function) {
+        print("[SLIDER] 🟡 updateHandlePositions >>> \(source)")
+        print("[SLIDER] leftHandle X: \(selectedMinValue) | \(xPositionAlongLine(for: selectedMinValue))")
+        print("[SLIDER] rightHandle X: \(selectedMaxValue) | \(xPositionAlongLine(for: selectedMaxValue))")
         leftHandle.position = CGPoint(x: xPositionAlongLine(for: selectedMinValue),
                                       y: sliderLine.frame.midY)
 
