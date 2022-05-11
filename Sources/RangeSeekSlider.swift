@@ -537,6 +537,9 @@ import UIKit
     }
 
     private func updateHandlePositions() {
+        print("[SLIDER] 🟡 updateHandlePositions")
+        print("leftHandle X: \(selectedMinValue) | \(xPositionAlongLine(for: selectedMinValue))")
+        print("rightHandle X: \(selectedMaxValue) | \(xPositionAlongLine(for: selectedMaxValue))")
         leftHandle.position = CGPoint(x: xPositionAlongLine(for: selectedMinValue),
                                       y: sliderLine.frame.midY)
 
