@@ -33,6 +33,8 @@ import UIKit
     // MARK: - open stored properties
 
     open weak var delegate: RangeSeekSliderDelegate?
+    
+    public var isShowLog: Bool = true
 
     /// The minimum possible value to select in the range
     @IBInspectable open var minValue: CGFloat = 0.0 {
@@ -634,35 +636,52 @@ import UIKit
             previousStepMaxValue = selectedMaxValue
         }
 
+        print("[SLIDER] -----  ")
         let diff: CGFloat = selectedMaxValue - selectedMinValue
-
+        
+        print("[SLIDER] diff: \(diff) ")
+        print("[SLIDER] minDistance: \(minDistance) ")
+        print("[SLIDER] maxDistance: \(maxDistance) ")
+        
         if diff < minDistance {
             switch handleTracking {
             case .left:
+                print("[SLIDER] LEFT")
                 selectedMinValue = selectedMaxValue - minDistance
             case .right:
+                print("[SLIDER] right")
                 selectedMaxValue = selectedMinValue + minDistance
             case .none:
+                print("[SLIDER] none")
                 break
             }
         } else if diff > maxDistance {
             switch handleTracking {
             case .left:
+                print("[SLIDER] LEFT 2")
                 selectedMinValue = selectedMaxValue - maxDistance
             case .right:
+                print("[SLIDER] right 2")
                 selectedMaxValue = selectedMinValue + maxDistance
             case .none:
+                print("[SLIDER] none 2")
                 break
             }
         }
 
         // ensure the minimum and maximum selected values are within range. Access the values directly so we don't cause this refresh method to be called again (otherwise changing the properties causes a refresh)
+        print("[SLIDER] selectedMinValue \(selectedMinValue)")
+        print("[SLIDER] selectedMaxValue \(selectedMaxValue)")
+        
         if selectedMinValue < minValue {
             selectedMinValue = minValue
         }
         if selectedMaxValue > maxValue {
             selectedMaxValue = maxValue
         }
+        
+        print("[SLIDER] selectedMinValue \(selectedMinValue)")
+        print("[SLIDER] selectedMaxValue \(selectedMaxValue)")
 
         // update the frames in a transaction so that the tracking doesn't continue until the frame has moved.
         CATransaction.begin()
