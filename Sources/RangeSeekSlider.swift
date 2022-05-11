@@ -430,7 +430,7 @@ import UIKit
 
         setupStyle()
 
-        refresh()
+        refresh(isReset: true)
     }
 
     private func percentageAlongLine(for value: CGFloat) -> CGFloat {
@@ -621,7 +621,7 @@ import UIKit
         }
     }
 
-    fileprivate func refresh() {
+    fileprivate func refresh(isReset: Bool = false) {
         if enableStep && step > 0.0 {
             selectedMinValue = CGFloat(roundf(Float(selectedMinValue / step))) * step
             if let previousStepMinValue = previousStepMinValue, previousStepMinValue != selectedMinValue {
@@ -677,6 +677,11 @@ import UIKit
             selectedMinValue = minValue
         }
         if selectedMaxValue > maxValue {
+            selectedMaxValue = maxValue
+        }
+        
+        if isReset {
+            selectedMinValue = minValue
             selectedMaxValue = maxValue
         }
         
